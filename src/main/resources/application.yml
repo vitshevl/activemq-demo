@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+
+logging:
+  level:
+    springbootjms:
+      com:
+        epam:
+          activemq:
+            jms:
+              impl: INFO
+
+
+composite-example:
+    composite-queue: MY.QUEUE
+    forward-queue: FOO
+    forward-topic: BAR
+
+
+
