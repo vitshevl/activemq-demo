@@ -22,5 +22,7 @@ composite-example:
     forward-queue: FOO
     forward-topic: BAR
 
+postfix: .qmirror
+
 
 
