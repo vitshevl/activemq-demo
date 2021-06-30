@@ -2,6 +2,8 @@ package springbootjms.com.epam.activemq.jms.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
@@ -14,18 +16,15 @@ import javax.jms.Message;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-/**
- * CompositeProducerImpl.
- *
- * @author Viktor_Shevliagin
- */
+
 @Slf4j
 @Component
 @RestController
-@RequiredArgsConstructor
 public class CompositeProducerImpl implements CompositeProducer {
 
-  private final JmsTemplate jmsTemplate;
+  @Autowired
+  @Qualifier("queueJmsTemplate")
+  private JmsTemplate jmsTemplate;
 
   @Value("${composite-example.composite-queue}")
   private String compositeQueue;

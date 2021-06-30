@@ -2,9 +2,10 @@ package springbootjms.com.epam.activemq.configuration;
 
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
@@ -31,11 +32,20 @@ public class JmsConfig {
     return connectionFactory;
   }
 
-
   @Bean
-  public JmsTemplate jmsTemplate() {
+  @Qualifier("queueJmsTemplate")
+  public JmsTemplate jmsQueueTemplate() {
     JmsTemplate template = new JmsTemplate();
     template.setConnectionFactory(connectionFactory());
+    return template;
+  }
+
+  @Bean
+  @Qualifier("topicJmsTemplate")
+  public JmsTemplate jmsTopicTemplate() {
+    JmsTemplate template = new JmsTemplate();
+    template.setConnectionFactory(connectionFactory());
+    template.setPubSubDomain(true);
     return template;
   }
 
@@ -53,4 +63,5 @@ public class JmsConfig {
     factory.setPubSubDomain(true);
     return factory;
   }
+
 }

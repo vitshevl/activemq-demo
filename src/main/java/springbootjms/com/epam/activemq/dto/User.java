@@ -6,11 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
-/**
- * User.
- *
- * @author Viktor_Shevliagin
- */
+
 @Component
 @Data
 @Accessors(chain = true)

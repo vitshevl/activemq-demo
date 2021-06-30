@@ -18,11 +18,16 @@ logging:
 
 
 composite-example:
-    composite-queue: MY.QUEUE
-    forward-queue: FOO
-    forward-topic: BAR
+  composite-queue: MY.QUEUE
+  forward-queue: FOO
+  forward-topic: BAR
 
 postfix: .qmirror
+
+virtual-topic-example:
+  topic: VirtualTopic.MY-SUPER-TOPIC
+
+
 
 
 
