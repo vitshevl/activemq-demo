@@ -7,8 +7,7 @@ import javax.jms.JMSException;
 
 public interface MirroredListener {
 
-  void receiveMessageFromCompositeMirroredTopic(Message jsonMessage) throws JMSException;
+  void receiveMessageFromCompositeMirroredQueue(Message jsonMessage) throws JMSException;
 
-  void receiveMessageFromForwardMirroredTopic(Message jsonMessage) throws JMSException;
 
 }

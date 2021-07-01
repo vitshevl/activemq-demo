@@ -16,33 +16,22 @@ import javax.jms.TextMessage;
 public class MirroredListenerImpl implements MirroredListener {
 
 
-  @Value("${composite-example.composite-queue}")
-  private String compositeQueue;
+  @Value("${composite-example.mirrored-queue}")
+  private String mirroredQueue;
 
-  @Value("${composite-example.forward-queue}")
-  private String forwardQueue;
 
   @Value("${postfix}")
   private String postfix;
 
 
-  @JmsListener(destination = "${composite-example.composite-queue}" + "${postfix}", containerFactory = "topicListenerFactory")
-  public void receiveMessageFromCompositeMirroredTopic(Message jsonMessage) throws JMSException {
+  @JmsListener(destination = "${composite-example.mirrored-queue}" + "${postfix}", containerFactory = "topicListenerFactory")
+  public void receiveMessageFromCompositeMirroredQueue(Message jsonMessage) throws JMSException {
 
     TextMessage textMessage = (TextMessage) jsonMessage;
     String messageData = textMessage.getText();
-    log.info("Received message: " + messageData + " from mirror topic - " + compositeQueue + postfix);
+    log.info("Received message: " + messageData + " from mirror queue - " + mirroredQueue + postfix);
 
   }
 
-
-  @JmsListener(destination = "${composite-example.forward-queue}" + "${postfix}", containerFactory = "topicListenerFactory")
-  public void receiveMessageFromForwardMirroredTopic(Message jsonMessage) throws JMSException {
-
-    TextMessage textMessage = (TextMessage) jsonMessage;
-    String messageData = textMessage.getText();
-    log.info("Received message: " + messageData + " from mirror topic - " + forwardQueue + postfix);
-
-  }
 
 }

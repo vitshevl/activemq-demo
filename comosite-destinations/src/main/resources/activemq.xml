@@ -63,7 +63,6 @@
             <queue physicalName="MY.QUEUE" />
             <queue physicalName="FOO" />
             <topic physicalName="BAR" />
-            <topic physicalName="VirtualTopic.MY-SUPER-TOPIC" />
         </destinations>
 
 
@@ -78,7 +77,7 @@
                         </forwardTo>
                     </compositeQueue>
 
-                    <virtualTopic name="VirtualTopic.>" prefix="Consumer.*" selectorAware="false" concurrentSend="true"/>
+                    <!--virtualTopic name="VirtualTopic.>" prefix="Consumer.*." selectorAware="false" concurrentSend="true"/-->
 
                 </virtualDestinations>
             </virtualDestinationInterceptor>

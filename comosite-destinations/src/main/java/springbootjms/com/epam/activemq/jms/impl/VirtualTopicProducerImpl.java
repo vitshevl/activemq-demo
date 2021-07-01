@@ -7,14 +7,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 import springbootjms.com.epam.activemq.jms.VirtualTopicProducer;
 
 
 
 @Slf4j
 @Component
-@RestController
 public class VirtualTopicProducerImpl implements VirtualTopicProducer {
 
   @Autowired
@@ -29,7 +27,7 @@ public class VirtualTopicProducerImpl implements VirtualTopicProducer {
 
     log.info("Sending message " + messageText + " to virtual topic - " + virtualTopic);
 
-    jmsTemplate.convertAndSend("VirtualTopic.MY-SUPER-TOPIC", messageText);
+    jmsTemplate.convertAndSend(virtualTopic, messageText);
   }
 
 }

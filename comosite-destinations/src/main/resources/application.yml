@@ -21,6 +21,7 @@ composite-example:
   composite-queue: MY.QUEUE
   forward-queue: FOO
   forward-topic: BAR
+  mirrored-queue: mirrored-queue
 
 postfix: .qmirror
 
