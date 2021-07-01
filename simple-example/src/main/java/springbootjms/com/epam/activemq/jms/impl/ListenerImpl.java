@@ -31,16 +31,16 @@ public class ListenerImpl implements Listener {
   }
 
 
-  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicListenerFactory", id = "1")
-  public void receiveMessageFromForwardTopic(Message jsonMessage) throws JMSException {
+  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicNonDurListenerFactory")
+  public void receiveMessageFromTopic_1(Message jsonMessage) throws JMSException {
 
     TextMessage textMessage = (TextMessage) jsonMessage;
     String messageData = textMessage.getText();
     log.info("Received message: " + messageData + " from topic - " + topic + " by the first subscriber.");
   }
 
-  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicListenerFactory", id = "2")
-  public void receiveMessageFromForwardTopic_2(Message jsonMessage) throws JMSException {
+  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicNonDurListenerFactory")
+  public void receiveMessageFromTopic_2(Message jsonMessage) throws JMSException {
 
     TextMessage textMessage = (TextMessage) jsonMessage;
     String messageData = textMessage.getText();

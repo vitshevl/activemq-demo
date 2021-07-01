@@ -56,11 +56,24 @@ public class JmsConfig {
     return factory;
   }
 
-  @Bean(name = "topicListenerFactory")
-  public DefaultJmsListenerContainerFactory jmsListenerTopicContainerFactory() {
+
+  @Bean(name = "topicNonDurListenerFactory")
+  public DefaultJmsListenerContainerFactory jmsNonDurListenerTopicContainerFactory() {
     DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
     factory.setConnectionFactory(connectionFactory());
     factory.setPubSubDomain(true);
+    factory.setSubscriptionDurable(false);
+    return factory;
+  }
+
+
+  @Bean(name = "topicDurListenerFactory")
+  public DefaultJmsListenerContainerFactory jmsDurListenerTopicContainerFactory() {
+    DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+    factory.setConnectionFactory(connectionFactory());
+    factory.setPubSubDomain(true);
+    factory.setSubscriptionDurable(true);
+    factory.setClientId("dur-1");
     return factory;
   }
 

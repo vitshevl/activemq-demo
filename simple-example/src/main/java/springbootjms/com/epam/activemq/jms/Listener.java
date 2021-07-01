@@ -10,6 +10,8 @@ public interface Listener {
 
   void receiveMessageFromQueue(Message jsonMessage) throws JMSException;
 
-  void receiveMessageFromForwardTopic(Message jsonMessage) throws JMSException;
+  void receiveMessageFromTopic_1(Message jsonMessage) throws JMSException;
+
+  void receiveMessageFromTopic_2(Message jsonMessage) throws JMSException;
 
 }
