@@ -11,7 +11,6 @@ import javax.jms.JMSException;
 import javax.jms.TextMessage;
 
 
-
 @Slf4j
 @Component
 public class ListenerImpl implements Listener {
@@ -23,7 +22,6 @@ public class ListenerImpl implements Listener {
   private String topic;
 
 
-
   @JmsListener(destination = "${simple-example.queue}", containerFactory = "queueListenerFactory")
   public void receiveMessageFromQueue(Message jsonMessage) throws JMSException {
 
@@ -33,12 +31,20 @@ public class ListenerImpl implements Listener {
   }
 
 
-  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicListenerFactory")
+  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicListenerFactory", id = "1")
   public void receiveMessageFromForwardTopic(Message jsonMessage) throws JMSException {
 
     TextMessage textMessage = (TextMessage) jsonMessage;
     String messageData = textMessage.getText();
-    log.info("Received message: " + messageData + " from topic - " + topic);
+    log.info("Received message: " + messageData + " from topic - " + topic + " by the first subscriber.");
+  }
+
+  @JmsListener(destination = "${simple-example.topic}", containerFactory = "topicListenerFactory", id = "2")
+  public void receiveMessageFromForwardTopic_2(Message jsonMessage) throws JMSException {
+
+    TextMessage textMessage = (TextMessage) jsonMessage;
+    String messageData = textMessage.getText();
+    log.info("Received message: " + messageData + " from topic - " + topic + " by the second subscriber.");
   }
 
 }
